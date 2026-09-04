@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="Connection">
+        <setting id="host" type="text" label="RemoteTerm URL" default="https://192.168.1.100" />
+        <setting id="verify_ssl" type="bool" label="Verify SSL certificate (turn off for self-signed nginx certs)" default="false" />
+        <setting id="basic_auth_user" type="text" label="Basic auth username (leave blank if not using MESHCORE_BASIC_AUTH_USERNAME)" default="" />
+        <setting id="basic_auth_pass" type="text" option="hidden" label="Basic auth password (leave blank if not using MESHCORE_BASIC_AUTH_PASSWORD)" default="" />
+        <setting id="timeout" type="number" label="Request timeout (seconds)" default="6" />
+        <setting id="enable_live_updates" type="bool" label="Enable live updates (WebSocket: instant messages, live packet feed)" default="true" />
+    </category>
+    <category label="Your Location">
+        <!-- type="text" (not "number") is required here: Kodi's on-screen
+             numeric keypad for type="number" does not accept "." or "-",
+             which makes it impossible to enter real-world coordinates.
+             Text entry uses the full keyboard instead. -->
+        <setting id="map_center_lat" type="text" label="Your latitude (required for Map/distance features, e.g. 34.0522, use - for South) -- leave blank if unset" default="" />
+        <setting id="map_center_lon" type="text" label="Your longitude (required for Map/distance features, e.g. -118.2437, use - for West) -- leave blank if unset" default="" />
+        <setting id="units" type="select" label="Measurement units (distance)" values="Imperial|Metric" default="Imperial" />
+    </category>
+    <category label="Analytics">
+        <setting id="show_gauges" type="bool" label="Show radial gauges (Decrypt Rate, Battery, Messages/Hour)" default="true" />
+    </category>
+    <category label="Map">
+        <setting id="carto_api_key" type="text" label="CARTO API key (optional)" default="" />
+        <setting type="action" label="More info about map tiles" action="RunScript(plugin.program.remoteterm, mapinfo)" />
+    </category>
+</settings>

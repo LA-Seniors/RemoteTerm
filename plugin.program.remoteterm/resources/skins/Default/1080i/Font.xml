@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fonts>
+    <fontset>
+        <!-- Explicit font definitions for every font id this skin uses.
+             Previously undefined: every label silently fell back to
+             whatever font the user's currently-ACTIVE Kodi skin (Estuary,
+             or any third-party skin) happens to define for these same
+             ids, which varies from system to system and made text sizing
+             unpredictable. Arial.ttf ships with Kodi itself on every
+             platform, so this is now stable regardless of which skin is
+             otherwise active.
+
+             Note on emoji: standard TrueType fonts like this one do not
+             contain colour emoji glyphs, and Kodi's text renderer does
+             not support colour font formats (COLR/CBDT) the way a modern
+             browser or OS does. An emoji character can be present in the
+             text correctly (confirmed at the code level) and still not
+             have a glyph to draw. There is no font substitution that
+             reliably fixes this within Kodi's rendering pipeline. -->
+        <font>
+            <name>font10</name>
+            <filename>arial.ttf</filename>
+            <size>19</size>
+        </font>
+        <font>
+            <name>font11</name>
+            <filename>arial.ttf</filename>
+            <size>21</size>
+        </font>
+        <font>
+            <name>font12</name>
+            <filename>arial.ttf</filename>
+            <size>23</size>
+        </font>
+        <font>
+            <name>font13</name>
+            <filename>arial.ttf</filename>
+            <size>25</size>
+        </font>
+        <font>
+            <name>font13_title</name>
+            <filename>arial.ttf</filename>
+            <size>25</size>
+            <style>bold</style>
+        </font>
+        <font>
+            <name>font16_title</name>
+            <filename>arial.ttf</filename>
+            <size>31</size>
+            <style>bold</style>
+        </font>
+        <font>
+            <name>font45_title</name>
+            <filename>arial.ttf</filename>
+            <size>45</size>
+            <style>bold</style>
+        </font>
+    </fontset>
+</fonts>
