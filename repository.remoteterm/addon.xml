@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.remoteterm" name="RemoteTerm Repository" version="1.0.1" provider-name="RemoteTerm">
+<addon id="repository.remoteterm" name="RemoteTerm Repository" version="1.0.2" provider-name="RemoteTerm">
     <extension point="xbmc.addon.repository" name="RemoteTerm Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/LA-Seniors/RemoteTerm/main/addons.xml</info>
@@ -10,5 +10,8 @@
     <extension point="xbmc.addon.metadata">
         <summary>RemoteTerm Repository</summary>
         <description>Repository for RemoteTerm Kodi Addon</description>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
     </extension>
 </addon>
