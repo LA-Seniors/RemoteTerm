@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-
-    <addon id="repository.remoteterm" name="RemoteTerm Repository" version="1.0.0" provider-name="RemoteTerm">
-        <extension point="xbmc.addon.repository" name="RemoteTerm Repository">
-            <dir>
-                <info compressed="false">https://raw.githubusercontent.com/LA-Seniors/RemoteTerm/main/addons.xml</info>
-                <checksum>https://raw.githubusercontent.com/LA-Seniors/RemoteTerm/main/addons.xml.md5</checksum>
-                <datadir zip="true">https://raw.githubusercontent.com/LA-Seniors/RemoteTerm/main/</datadir>
-            </dir>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <summary>RemoteTerm Repository</summary>
-            <description>Repository for RemoteTerm Kodi Addon</description>
-        </extension>
-    </addon>
-
-    <addon id="plugin.program.remoteterm" name="RemoteTerm" version="10.8.0" provider-name="MeshCore Community">
-        <requires>
-            <import addon="xbmc.python" version="3.0.0"/>
-            <import addon="script.module.requests" version="2.25.1"/>
-        </requires>
-        <extension point="xbmc.python.script" library="main.py">
-            <provides>executable</provides>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <summary lang="en">A Kodi front end for RemoteTerm MeshCore -- with thanks ans credit to Jack Kingsman (https://github.com/jkingsman) and the RemoteTerm MeshCore contributors for building the project this addon is powered by, for the community.</summary>
-            <description lang="en">A rich, fully custom-skinned RemoteTerm dashboard for Kodi. Categories: Dashboard (live stats + recent activity), Chats (colorful bubble messages, channels/DMs separated, favorites filter), Repeater Console (neighbors, access list, node info, CLI commands), Search, Contacts (filter by type, sort by recency/distance/hop count), a distance-and-bearing node list (no external map service required), and a live Packet Feed over WebSocket. Looks and behaves identically regardless of the active Kodi skin.
+<addon id="repository.remoteterm" name="RemoteTerm Repository" version="1.0.1" provider-name="RemoteTerm">
+    <extension point="xbmc.addon.repository" name="RemoteTerm Repository">
+        <dir>
+            <info compressed="false">https://raw.githubusercontent.com/LA-Seniors/RemoteTerm/main/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/LA-Seniors/RemoteTerm/main/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/LA-Seniors/RemoteTerm/main/</datadir>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>RemoteTerm Repository</summary>
+        <description>Repository for RemoteTerm Kodi Addon</description>
+    </extension>
+</addon>
+<addon id="plugin.program.remoteterm" name="RemoteTerm" version="10.8.0" provider-name="MeshCore Community">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+    <import addon="script.module.requests" version="2.25.1"/>
+  </requires>
+  <extension point="xbmc.python.script" library="main.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">A Kodi front end for RemoteTerm MeshCore -- with thanks ans credit to Jack Kingsman (https://github.com/jkingsman) and the RemoteTerm MeshCore contributors for building the project this addon is powered by, for the community.</summary>
+    <description lang="en">A rich, fully custom-skinned RemoteTerm dashboard for Kodi. Categories: Dashboard (live stats + recent activity), Chats (colorful bubble messages, channels/DMs separated, favorites filter), Repeater Console (neighbors, access list, node info, CLI commands), Search, Contacts (filter by type, sort by recency/distance/hop count), a distance-and-bearing node list (no external map service required), and a live Packet Feed over WebSocket. Looks and behaves identically regardless of the active Kodi skin.
 
 IMPORTANT: This is a front end only. You need a RemoteTerm backend already running and connected to your Mesh Radio -- without it, this Kodi addon has nothing to talk to and will not work. Setup instructions: https://gist.github.com/LA-Seniors/0d06033d441897e1f3bd067d89e421ba
 
 This addon is only possible because of RemoteTerm MeshCore (https://github.com/jkingsman/Remote-Terminal-for-MeshCore), the open-source backend it connects to. Thanks to Jack Kingsman (https://github.com/jkingsman) and the other contributing developers (https://github.com/jkingsman/Remote-Terminal-for-MeshCore/graphs/contributors) for building and maintaining it for the community.
 
 Built with help from Claude Code.</description>
-            <platform>all</platform>
-            <assets>
-                <icon>icon.png</icon>
-                <fanart>fanart.jpg</fanart>
-            </assets>
-        </extension>
-    </addon>
+    <platform>all</platform>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
 
 </addons>
