@@ -453,7 +453,7 @@
                     <control type="label"><left>16</left><width>810</width><height>44</height><font>font13</font><textcolor>FFAAAAAA</textcolor><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="44" width="845">
-                    <control type="image"><width>845</width><height>42</height><texture border="16" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
+                    <control type="image"><width>845</width><height>42</height><texture border="10" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
                     <control type="label"><left>16</left><width>810</width><height>44</height><font>font13</font><textcolor>FFFFFFFF</textcolor><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
@@ -474,7 +474,7 @@
                     <control type="label"><left>16</left><width>810</width><height>44</height><font>font12</font><textcolor>FFAAAAAA</textcolor><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="44" width="845">
-                    <control type="image"><width>845</width><height>42</height><texture border="16" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
+                    <control type="image"><width>845</width><height>42</height><texture border="10" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
                     <control type="label"><left>16</left><width>810</width><height>44</height><font>font12</font><textcolor>FFFFFFFF</textcolor><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
@@ -843,11 +843,11 @@
                 <onleft>950</onleft><onright>954</onright><onup>962</onup><ondown>954</ondown>
                 <itemlayout height="60" width="460">
                     <control type="image"><left>6</left><width>448</width><height>56</height><texture border="14" colordiffuse="1AFFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
-                    <control type="label"><left>26</left><width>410</width><height>60</height><font>font13</font><textcolor>FFAAAAAA</textcolor><info>ListItem.Label</info></control>
+                    <control type="label"><left>26</left><width>410</width><height>60</height><font>font13</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="60" width="460">
                     <control type="image"><left>6</left><width>448</width><height>56</height><texture border="14" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
-                    <control type="label"><left>26</left><width>410</width><height>60</height><font>font13</font><textcolor>FFFFFFFF</textcolor><info>ListItem.Label</info></control>
+                    <control type="label"><left>26</left><width>410</width><height>60</height><font>font13</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
 
@@ -906,11 +906,11 @@
                 <left>650</left><top>696</top><width>600</width><height>155</height>
                 <onleft>950</onleft><onright>952</onright><onup>958</onup><ondown>954</ondown>
                 <itemlayout height="44" width="600">
-                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFAAAAAA</textcolor><info>ListItem.Label</info></control>
+                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="44" width="600">
-                    <control type="image"><width>600</width><height>40</height><texture border="12" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
-                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFFFFFFF</textcolor><info>ListItem.Label</info></control>
+                    <control type="image"><width>600</width><height>40</height><texture border="10" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
 
@@ -924,11 +924,11 @@
                 <left>1285</left><top>696</top><width>600</width><height>155</height>
                 <onleft>951</onleft><onup>958</onup><ondown>956</ondown>
                 <itemlayout height="44" width="600">
-                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFAAAAAA</textcolor><info>ListItem.Label</info></control>
+                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="44" width="600">
-                    <control type="image"><width>600</width><height>40</height><texture border="12" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
-                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFFFFFFF</textcolor><info>ListItem.Label</info></control>
+                    <control type="image"><width>600</width><height>40</height><texture border="10" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+                    <control type="label"><left>16</left><width>568</width><height>44</height><font>font12</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
 
@@ -1068,7 +1068,7 @@
                     <control type="label"><left>16</left><width>1680</width><height>54</height><font>font13</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="54" width="1715">
-                    <control type="image"><left>6</left><width>1703</width><height>48</height><texture border="16" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
+                    <control type="image"><left>6</left><width>1703</width><height>48</height><texture border="10" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
                     <control type="label"><left>16</left><width>1680</width><height>54</height><font>font13</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
@@ -1091,22 +1091,25 @@
             <control type="button" id="1012">
                 <left>1195</left><top>150</top><width>220</width><height>50</height>
                 <label>Regional View</label><font>font12</font><align>center</align>
-                <texturenofocus colordiffuse="660D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="18" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="18" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1012</onleft><onright>1013</onright><onup>1012</onup><ondown>1015</ondown>
             </control>
             <control type="button" id="1013">
                 <left>1425</left><top>150</top><width>220</width><height>50</height>
                 <label>Local View</label><font>font12</font><align>center</align>
-                <texturenofocus colordiffuse="660D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="18" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="18" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1012</onleft><onright>1001</onright><onup>1013</onup><ondown>1015</ondown>
             </control>
             <control type="button" id="1001">
                 <left>1665</left><top>150</top><width>220</width><height>50</height>
                 <label>Refresh</label><font>font12</font><align>center</align>
-                <texturenofocus colordiffuse="660D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="18" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="18" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1013</onleft><onright>1001</onright><onup>1001</onup><ondown>1015</ondown>
             </control>
 
@@ -1122,10 +1125,10 @@
             <control type="image" id="1309"><left>426</left><top>742</top><width>256</width><height>256</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-map-placeholder.png</texture></control>
             <control type="image" id="1310"><left>682</left><top>742</top><width>256</width><height>256</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-map-placeholder.png</texture></control>
             <control type="image" id="1311"><left>938</left><top>742</top><width>256</width><height>256</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-map-placeholder.png</texture></control>
-            <control type="image"><left>168</left><top>228</top><width>1028</width><height>2</height><texture colordiffuse="662A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>168</left><top>998</top><width>1028</width><height>2</height><texture colordiffuse="662A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>168</left><top>228</top><width>2</width><height>772</height><texture colordiffuse="662A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1194</left><top>228</top><width>2</width><height>772</height><texture colordiffuse="662A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>168</left><top>228</top><width>1028</width><height>2</height><texture colordiffuse="9900E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>168</left><top>998</top><width>1028</width><height>2</height><texture colordiffuse="9900E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>168</left><top>228</top><width>2</width><height>772</height><texture colordiffuse="9900E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1194</left><top>228</top><width>2</width><height>772</height><texture colordiffuse="9900E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
             <control type="label" id="1014"><left>178</left><top>976</top><width>500</width><height>20</height><font>font10</font><textcolor>AAFFFFFF</textcolor><label>(c) OpenStreetMap contributors</label></control>
 
             <!-- Pan/Home D-pad, overlaid in the map's top-right corner
@@ -1152,28 +1155,38 @@
                  since a screenshot showed the single-character "W" label
                  rendering as a truncated "..." at the old size. -->
             <control type="button" id="1015"><left>1018</left><top>238</top><width>44</width><height>36</height><label>N</label><font>font11</font><align>center</align>
-                <texturenofocus colordiffuse="AA0D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <textcolor>FFFFFFFF</textcolor>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1015</onleft><onright>1015</onright><onup>1013</onup><ondown>1018</ondown>
             </control>
             <control type="button" id="1018"><left>972</left><top>278</top><width>44</width><height>36</height><label>W</label><font>font11</font><align>center</align>
-                <texturenofocus colordiffuse="AA0D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <textcolor>FFFFFFFF</textcolor>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1018</onleft><onright>1019</onright><onup>1015</onup><ondown>1016</ondown>
             </control>
             <control type="button" id="1019"><left>1018</left><top>278</top><width>44</width><height>36</height><label>H</label><font>font11</font><align>center</align>
-                <texturenofocus colordiffuse="AA0D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <textcolor>FFFFFFFF</textcolor>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1018</onleft><onright>1017</onright><onup>1015</onup><ondown>1016</ondown>
             </control>
             <control type="button" id="1017"><left>1064</left><top>278</top><width>44</width><height>36</height><label>E</label><font>font11</font><align>center</align>
-                <texturenofocus colordiffuse="AA0D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <textcolor>FFFFFFFF</textcolor>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1019</onleft><onright>1000</onright><onup>1015</onup><ondown>1016</ondown>
             </control>
             <control type="button" id="1016"><left>1018</left><top>318</top><width>44</width><height>36</height><label>S</label><font>font11</font><align>center</align>
-                <texturenofocus colordiffuse="AA0D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
-                <texturefocus colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <textcolor>FFFFFFFF</textcolor>
+                <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1016</onleft><onright>1016</onright><onup>1019</onup><ondown>1000</ondown>
             </control>
             <control type="image" id="1320"><left>170</left><top>230</top><width>16</width><height>16</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-dot.png</texture></control>
@@ -1327,15 +1340,20 @@
             <control type="image" id="1468"><left>170</left><top>230</top><width>16</width><height>16</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-dot.png</texture></control>
             <control type="image" id="1469"><left>170</left><top>230</top><width>16</width><height>16</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-dot.png</texture></control>
 
+            <control type="image"><left>1205</left><top>230</top><width>715</width><height>803</height><texture border="60" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image">
+                <left>1205</left><top>230</top><width>700</width><height>788</height>
+                <texture border="40">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture>
+            </control>
             <control type="list" id="1000">
                 <left>1220</left><top>230</top><width>665</width><height>768</height>
                 <onleft>1017</onleft><onup>1001</onup>
                 <itemlayout height="46" width="665">
-                    <control type="label"><left>16</left><width>630</width><height>46</height><font>font12</font><textcolor>FFAAAAAA</textcolor><info>ListItem.Label</info></control>
+                    <control type="label"><left>16</left><width>630</width><height>46</height><font>font12</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="46" width="665">
-                    <control type="image"><width>665</width><height>44</height><texture colordiffuse="1AFFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-                    <control type="label"><left>16</left><width>630</width><height>46</height><font>font12</font><textcolor>FFFFFFFF</textcolor><info>ListItem.Label</info></control>
+                    <control type="image"><width>665</width><height>44</height><texture border="10" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+                    <control type="label"><left>16</left><width>630</width><height>46</height><font>font12</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
         </control>
@@ -1423,27 +1441,6 @@
                 <left>180</left><top>250</top><width>200</width><height>200</height>
                 <texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-bg.png</texture>
             </control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-0.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-0)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-5.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-5)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-10.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-10)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-15.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-15)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-20.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-20)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-25.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-25)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-30.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-30)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-35.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-35)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-40.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-40)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-45.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-45)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-50.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-50)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-55.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-55)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-60.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-60)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-65.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-65)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-70.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-70)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-75.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-75)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-80.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-80)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-85.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-85)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-90.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-90)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-95.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-95)</visible></control>
-            <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-100.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),blue-100)</visible></control>
             <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-0.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),green-0)</visible></control>
             <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-5.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),green-5)</visible></control>
             <control type="image"><left>180</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-10.png</texture><visible>String.IsEqual(Window.Property(gauge_decrypt_frame),green-10)</visible></control>
@@ -1542,27 +1539,6 @@
                 <left>500</left><top>250</top><width>200</width><height>200</height>
                 <texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-bg.png</texture>
             </control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-0.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-0)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-5.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-5)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-10.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-10)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-15.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-15)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-20.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-20)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-25.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-25)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-30.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-30)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-35.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-35)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-40.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-40)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-45.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-45)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-50.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-50)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-55.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-55)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-60.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-60)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-65.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-65)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-70.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-70)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-75.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-75)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-80.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-80)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-85.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-85)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-90.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-90)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-95.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-95)</visible></control>
-            <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-100.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),blue-100)</visible></control>
             <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-0.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),green-0)</visible></control>
             <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-5.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),green-5)</visible></control>
             <control type="image"><left>500</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-10.png</texture><visible>String.IsEqual(Window.Property(gauge_rssi_frame),green-10)</visible></control>
@@ -1661,27 +1637,6 @@
                 <left>820</left><top>250</top><width>200</width><height>200</height>
                 <texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-bg.png</texture>
             </control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-0.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-0)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-5.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-5)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-10.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-10)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-15.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-15)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-20.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-20)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-25.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-25)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-30.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-30)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-35.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-35)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-40.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-40)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-45.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-45)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-50.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-50)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-55.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-55)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-60.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-60)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-65.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-65)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-70.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-70)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-75.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-75)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-80.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-80)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-85.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-85)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-90.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-90)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-95.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-95)</visible></control>
-            <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-100.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),blue-100)</visible></control>
             <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-0.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),green-0)</visible></control>
             <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-5.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),green-5)</visible></control>
             <control type="image"><left>820</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-10.png</texture><visible>String.IsEqual(Window.Property(gauge_outgoing_frame),green-10)</visible></control>
@@ -1780,27 +1735,6 @@
                 <left>1140</left><top>250</top><width>200</width><height>200</height>
                 <texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-bg.png</texture>
             </control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-0.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-0)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-5.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-5)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-10.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-10)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-15.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-15)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-20.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-20)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-25.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-25)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-30.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-30)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-35.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-35)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-40.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-40)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-45.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-45)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-50.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-50)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-55.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-55)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-60.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-60)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-65.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-65)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-70.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-70)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-75.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-75)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-80.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-80)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-85.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-85)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-90.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-90)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-95.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-95)</visible></control>
-            <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-blue-100.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),blue-100)</visible></control>
             <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-0.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),green-0)</visible></control>
             <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-5.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),green-5)</visible></control>
             <control type="image"><left>1140</left><top>250</top><width>200</width><height>200</height><texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-gauge-fill-green-10.png</texture><visible>String.IsEqual(Window.Property(gauge_snr_frame),green-10)</visible></control>
@@ -1894,22 +1828,24 @@
                  270 (exactly 10 rows of 27px) too, since 295 was 10.9
                  rows, a partial last row that gets clipped at the
                  list's own boundary regardless of anything else. -->
-            <control type="image"><left>1400</left><top>130</top><width>490</width><height>365</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1400</left><top>130</top><width>490</width><height>3</height><texture colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1400</left><top>105</top><width>515</width><height>390</height><texture border="40" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>1400</left><top>130</top><width>490</width><height>365</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>1400</left><top>130</top><width>490</width><height>100</height><texture border="40" colordiffuse="6600E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>1424</left><top>146</top><width>350</width><height>28</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><label>Live Feed</label></control>
             <control type="image">
                 <left>1830</left><top>152</top><width>14</width><height>14</height>
                 <texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-dot.png</texture>
                 <colordiffuse>FF3DDC84</colordiffuse>
             </control>
-            <control type="image"><left>1424</left><top>182</top><width>442</width><height>1</height><texture colordiffuse="332A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1424</left><top>182</top><width>442</width><height>1</height><texture colordiffuse="3300E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
             <control type="list" id="1170">
                 <left>1420</left><top>194</top><width>460</width><height>270</height>
                 <itemlayout height="27" width="460">
-                    <control type="label"><left>4</left><width>456</width><height>27</height><font>font10</font><textcolor>FFAAAAAA</textcolor><info>ListItem.Label</info></control>
+                    <control type="label"><left>4</left><width>456</width><height>27</height><font>font10</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="27" width="460">
-                    <control type="label"><left>4</left><width>456</width><height>27</height><font>font10</font><textcolor>FFFFFFFF</textcolor><info>ListItem.Label</info></control>
+                    <control type="image"><left>0</left><width>460</width><height>25</height><texture border="8" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+                    <control type="label"><left>4</left><width>456</width><height>27</height><font>font10</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
 
@@ -1922,46 +1858,28 @@
                  that this row previously had no containing panel at all while
                  that one did, which is what actually made the two rows look
                  uncentered and unevenly spaced next to each other. -->
-            <control type="image"><left>170</left><top>502</top><width>840</width><height>84</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>170</left><top>502</top><width>840</width><height>3</height><texture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>145</left><top>502</top><width>865</width><height>84</height><texture border="40" colordiffuse="4039FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>170</left><top>502</top><width>840</width><height>84</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>170</left><top>502</top><width>840</width><height>84</height><texture border="40" colordiffuse="6639FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>190</left><top>514</top><width>420</width><height>26</height><font>font12</font><textcolor>FFFFFFFF</textcolor><label>TX Channel Utilization</label></control>
             <control type="label" id="1147"><left>610</left><top>514</top><width>380</width><height>26</height><font>font12</font><textcolor>FFFFFFFF</textcolor><align>right</align><label>--</label></control>
-            <control type="image" id="1190"><left>190</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="6600FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(intensity_tier),green)</visible></control>
-            <control type="image" id="1191"><left>190</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="66FFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(intensity_tier),amber)</visible></control>
-            <control type="image" id="1192"><left>190</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="66FF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(intensity_tier),red)</visible></control>
-            <control type="progress" id="1146">
-                <left>190</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(intensity_tier),green)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1148">
-                <left>190</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(intensity_tier),amber)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1149">
-                <left>190</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(intensity_tier),red)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1210">
-                <left>190</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(intensity_tier),darkred)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="image" id="1220"><left>190</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="66960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(intensity_tier),darkred)</visible></control>
+            <!-- Confirmed real bug, twice: the previous stacked-progress-
+                 bar-plus-separately-managed-glow-strip mechanism (8
+                 controls: 4 tier-colored <progress> bars + 4 tier-colored
+                 glow-strip images, switched via <visible> on a Window
+                 property) kept overflowing its card no matter how the
+                 width numbers were adjusted, on both the XML side and the
+                 Python max_width default. Replaced entirely with the
+                 exact same 2-control mechanism already proven reliable
+                 for the Dashboard's Decrypted/Sent-by-You bars: one
+                 static rounded track (never resized, so it can safely
+                 use a bordered/rounded texture) plus one single dynamic
+                 flat-fill image whose width and color are both set
+                 directly in Python via setWidth()/setColorDiffuse() --
+                 no tier-switching, no stacking, nothing left to drift out
+                 of sync with the card's own width again. -->
+            <control type="image"><left>202</left><top>544</top><width>776</width><height>34</height><texture border="10" colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+            <control type="image" id="1146"><left>202</left><top>544</top><width>1</width><height>34</height><texture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texture></control>
 
             <!-- RX Channel Utilization: NEW bar filling the space freed up
                  by halving Packet Reception Intensity, using rx_air_secs
@@ -1969,159 +1887,74 @@
                  the packet-count metric on the left. Same panel/inset
                  geometry as the bar to its left, mirrored to the right
                  column. -->
-            <control type="image"><left>1030</left><top>502</top><width>840</width><height>84</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1030</left><top>502</top><width>840</width><height>3</height><texture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1030</left><top>502</top><width>865</width><height>84</height><texture border="40" colordiffuse="4039FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>1030</left><top>502</top><width>840</width><height>84</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>1030</left><top>502</top><width>840</width><height>84</height><texture border="40" colordiffuse="6639FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>1050</left><top>514</top><width>420</width><height>26</height><font>font12</font><textcolor>FFFFFFFF</textcolor><label>RX Channel Utilization</label></control>
             <control type="label" id="1183"><left>1470</left><top>514</top><width>380</width><height>26</height><font>font12</font><textcolor>FFFFFFFF</textcolor><align>right</align><label>--</label></control>
-            <control type="image" id="1193"><left>1050</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="6600FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(utilization_tier),green)</visible></control>
-            <control type="image" id="1194"><left>1050</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="66FFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(utilization_tier),amber)</visible></control>
-            <control type="image" id="1195"><left>1050</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="66FF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(utilization_tier),red)</visible></control>
-            <control type="progress" id="1180">
-                <left>1050</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(utilization_tier),green)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1181">
-                <left>1050</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(utilization_tier),amber)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1182">
-                <left>1050</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(utilization_tier),red)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1211">
-                <left>1050</left><top>544</top><width>800</width><height>34</height>
-                <visible>String.IsEqual(Window.Property(utilization_tier),darkred)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="image" id="1221"><left>1050</left><top>538</top><width>800</width><height>46</height><texture colordiffuse="66960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(utilization_tier),darkred)</visible></control>
+            <control type="image"><left>1062</left><top>544</top><width>776</width><height>34</height><texture border="10" colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+            <control type="image" id="1180"><left>1062</left><top>544</top><width>1</width><height>34</height><texture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texture></control>
 
             <!-- Stat grid: 4 columns x 2 rows -->
-            <control type="image"><left>170</left><top>590</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>170</left><top>590</top><width>400</width><height>3</height><texture colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>145</left><top>590</top><width>425</width><height>115</height><texture border="40" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>170</left><top>590</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>170</left><top>590</top><width>400</width><height>100</height><texture border="40" colordiffuse="6600E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>190</left><top>602</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>Uptime</label></control>
             <control type="label" id="1110"><left>190</left><top>628</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
-            <control type="image"><left>590</left><top>590</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>590</left><top>590</top><width>400</width><height>3</height><texture colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>590</left><top>590</top><width>400</width><height>115</height><texture border="40" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>590</left><top>590</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>590</left><top>590</top><width>400</width><height>100</height><texture border="40" colordiffuse="6600E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>610</left><top>602</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>Noise Floor</label></control>
             <control type="label" id="1111"><left>610</left><top>628</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
-            <control type="image"><left>1010</left><top>590</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1010</left><top>590</top><width>400</width><height>3</height><texture colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1010</left><top>590</top><width>400</width><height>115</height><texture border="40" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>1010</left><top>590</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>1010</left><top>590</top><width>400</width><height>100</height><texture border="40" colordiffuse="6600E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>1030</left><top>602</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>Last RSSI</label></control>
             <control type="label" id="1112"><left>1030</left><top>628</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
-            <control type="image"><left>1430</left><top>590</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1430</left><top>590</top><width>400</width><height>3</height><texture colordiffuse="FF2A6DF4">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1430</left><top>590</top><width>425</width><height>115</height><texture border="40" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>1430</left><top>590</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>1430</left><top>590</top><width>400</width><height>100</height><texture border="40" colordiffuse="6600E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>1450</left><top>602</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>Last SNR</label></control>
             <control type="label" id="1113"><left>1450</left><top>628</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
-            <control type="image"><left>170</left><top>720</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>170</left><top>720</top><width>400</width><height>3</height><texture colordiffuse="FF3DDC84">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>145</left><top>720</top><width>425</width><height>115</height><texture border="40" colordiffuse="4039FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>170</left><top>720</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>170</left><top>720</top><width>400</width><height>100</height><texture border="40" colordiffuse="6639FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>190</left><top>732</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>TX Air Time</label></control>
             <control type="label" id="1114"><left>190</left><top>758</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
-            <control type="image"><left>590</left><top>720</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>590</left><top>720</top><width>400</width><height>3</height><texture colordiffuse="FF3DDC84">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>590</left><top>720</top><width>400</width><height>115</height><texture border="40" colordiffuse="4039FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>590</left><top>720</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>590</left><top>720</top><width>400</width><height>100</height><texture border="40" colordiffuse="6639FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>610</left><top>732</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>RX Air Time</label></control>
             <control type="label" id="1115"><left>610</left><top>758</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
-            <control type="image"><left>1010</left><top>720</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1010</left><top>720</top><width>400</width><height>3</height><texture colordiffuse="FF3DDC84">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1010</left><top>720</top><width>400</width><height>115</height><texture border="40" colordiffuse="4039FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>1010</left><top>720</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>1010</left><top>720</top><width>400</width><height>100</height><texture border="40" colordiffuse="6639FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>1030</left><top>732</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>Packets Received</label></control>
             <control type="label" id="1116"><left>1030</left><top>758</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
-            <control type="image"><left>1430</left><top>720</top><width>400</width><height>115</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1430</left><top>720</top><width>400</width><height>3</height><texture colordiffuse="FF3DDC84">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>1430</left><top>720</top><width>425</width><height>115</height><texture border="40" colordiffuse="4039FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>1430</left><top>720</top><width>400</width><height>115</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>1430</left><top>720</top><width>400</width><height>100</height><texture border="40" colordiffuse="6639FF88">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>1450</left><top>732</top><width>360</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><align>center</align><label>Packets Sent</label></control>
             <control type="label" id="1117"><left>1450</left><top>758</top><width>360</width><height>36</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><align>center</align><label>--</label></control>
 
             <!-- Traffic Composition: recent-window bar charts, Flood vs Direct -->
             <control type="label"><left>170</left><top>853</top><width>600</width><height>24</height><font>font12</font><textcolor>FFFFFFFF</textcolor><label>Community &amp; Regional Data</label></control>
-            <control type="image"><left>170</left><top>882</top><width>840</width><height>120</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>170</left><top>882</top><width>840</width><height>3</height><texture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>145</left><top>882</top><width>865</width><height>120</height><texture border="40" colordiffuse="40FFC400">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>170</left><top>882</top><width>840</width><height>120</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>170</left><top>882</top><width>840</width><height>100</height><texture border="40" colordiffuse="66FFC400">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>190</left><top>896</top><width>680</width><height>24</height><font>font11</font><textcolor>FF888888</textcolor><label>Region-Scoped Traffic</label></control>
             <control type="label" id="1141"><left>870</left><top>896</top><width>120</width><height>24</height><font>font12</font><textcolor>FFFFFFFF</textcolor><align>right</align><label>--</label></control>
-            <control type="image" id="1196"><left>190</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="6600FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(tx_tier),green)</visible></control>
-            <control type="image" id="1197"><left>190</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="66FFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(tx_tier),amber)</visible></control>
-            <control type="image" id="1198"><left>190</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="66FF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(tx_tier),red)</visible></control>
-            <control type="progress" id="1140"><left>190</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(tx_tier),green)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1160"><left>190</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(tx_tier),amber)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1161"><left>190</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(tx_tier),red)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1212">
-                <left>190</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(tx_tier),darkred)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="image" id="1222"><left>190</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="66960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(tx_tier),darkred)</visible></control>
-            <control type="label" id="1142"><left>190</left><top>964</top><width>800</width><height>24</height><font>font11</font><textcolor>FF888888</textcolor><label>--</label></control>
-            <control type="image"><left>1030</left><top>882</top><width>840</width><height>120</height><texture colordiffuse="D60D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
-            <control type="image"><left>1030</left><top>882</top><width>840</width><height>3</height><texture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
+            <control type="image"><left>202</left><top>928</top><width>776</width><height>28</height><texture border="10" colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+            <control type="image" id="1140"><left>202</left><top>928</top><width>1</width><height>28</height><texture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texture></control>
+            <control type="label" id="1142"><left>190</left><top>970</top><width>800</width><height>24</height><font>font11</font><textcolor>FF888888</textcolor><label>--</label></control>
+            <control type="image"><left>1030</left><top>882</top><width>865</width><height>120</height><texture border="40" colordiffuse="40FFC400">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
+            <control type="image"><left>1030</left><top>882</top><width>840</width><height>120</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
+            <control type="image"><left>1030</left><top>882</top><width>840</width><height>100</height><texture border="40" colordiffuse="66FFC400">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
             <control type="label"><left>1050</left><top>896</top><width>680</width><height>24</height><font>font11</font><textcolor>FF888888</textcolor><label>Active Companion Nodes</label></control>
             <control type="label" id="1144"><left>1730</left><top>896</top><width>120</width><height>24</height><font>font12</font><textcolor>FFFFFFFF</textcolor><align>right</align><label>--</label></control>
-            <control type="image" id="1199"><left>1050</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="6600FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(rx_tier),green)</visible></control>
-            <control type="image" id="1200"><left>1050</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="66FFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(rx_tier),amber)</visible></control>
-            <control type="image" id="1201"><left>1050</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="66FF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(rx_tier),red)</visible></control>
-            <control type="progress" id="1143"><left>1050</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(rx_tier),green)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1162"><left>1050</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(rx_tier),amber)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFFD500">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1163"><left>1050</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(rx_tier),red)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FFFF1744">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="progress" id="1213">
-                <left>1050</left><top>928</top><width>800</width><height>28</height>
-                <visible>String.IsEqual(Window.Property(rx_tier),darkred)</visible>
-                <texturebg colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texturebg>
-                <lefttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</lefttexture>
-                <midtexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</midtexture>
-                <righttexture colordiffuse="FF960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</righttexture>
-            </control>
-            <control type="image" id="1223"><left>1050</left><top>922</top><width>800</width><height>40</height><texture colordiffuse="66960A1E">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-glow-strip.png</texture><visible>String.IsEqual(Window.Property(rx_tier),darkred)</visible></control>
-            <control type="label" id="1145"><left>1050</left><top>964</top><width>800</width><height>24</height><font>font11</font><textcolor>FF888888</textcolor><label>--</label></control>
+            <control type="image"><left>1062</left><top>928</top><width>776</width><height>28</height><texture border="10" colordiffuse="551B2130">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
+            <control type="image" id="1143"><left>1062</left><top>928</top><width>1</width><height>28</height><texture colordiffuse="FF00FF66">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-bar.png</texture></control>
+            <control type="label" id="1145"><left>1050</left><top>970</top><width>800</width><height>24</height><font>font11</font><textcolor>FF888888</textcolor><label>--</label></control>
 
             <!-- Footer strip: DB size / errors / queue / community fanout -->
             <control type="label" id="1122"><left>170</left><top>1014</top><width>500</width><height>24</height><font>font11</font><textcolor>FF888888</textcolor><label>Database: --</label></control>

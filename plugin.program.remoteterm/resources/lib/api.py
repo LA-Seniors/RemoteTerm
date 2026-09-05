@@ -136,19 +136,100 @@ class RemoteTermAPI:
         try:
             lat_raw = self.addon.getSetting('map_center_lat').strip()
             lon_raw = self.addon.getSetting('map_center_lon').strip()
+            # Confirmed via a real log capture, definitively: a report of
+            # "the backend's location is never auto-seeded" traced all the
+            # way back to this exact stored value -- 34.0522, -118.2437,
+            # Los Angeles to 4 decimal places, an exact match for the old
+            # hardcoded LA fallback this class used to have (see the
+            # class-level history above; there is no longer any code that
+            # produces this value on purpose). Every fix in this function
+            # so far assumed a genuinely blank setting was the only "no
+            # real value yet" state -- but a setting written by that old,
+            # already-removed default persists in the user's saved Kodi
+            # settings forever, completely unaffected by updating the
+            # addon's own code, and every version since has correctly-but-
+            # wrongly treated that leftover fossil as "the user already
+            # configured this," permanently blocking the real auto-seed
+            # from ever running for anyone who had it written before the
+            # fallback was removed. Treated as if unset, specifically and
+            # only for this one known-bad legacy value -- not a general
+            # distrust of manually-entered coordinates, which are
+            # otherwise respected exactly as before.
+            if (lat_raw, lon_raw) == ("34.0522", "-118.2437"):
+                xbmc.log("[RemoteTerm] map center: ignoring stored value 34.0522, -118.2437 -- "
+                          "this is the old, already-removed hardcoded Los Angeles fallback, not a "
+                          "real configured location; re-running the real auto-seed instead", xbmc.LOGINFO)
+                lat_raw = lon_raw = ""
+            elif lat_raw and lon_raw:
+                try:
+                    if (round(float(lat_raw), 4), round(float(lon_raw), 4)) == (34.0522, -118.2437):
+                        xbmc.log("[RemoteTerm] map center: ignoring stored value "
+                                  f"{lat_raw}, {lon_raw} -- rounds to the old, already-removed "
+                                  "hardcoded Los Angeles fallback, not a real configured location; "
+                                  "re-running the real auto-seed instead", xbmc.LOGINFO)
+                        lat_raw = lon_raw = ""
+                except ValueError:
+                    pass
             if lat_raw and lon_raw:
+                # Confirmed real gap: this was the one remaining branch
+                # with zero logging anywhere in it -- every other outcome
+                # of this property now logs something, but a report of
+                # "nothing shows up in the log at all" couldn't be told
+                # apart from "this exact branch fired" without this line.
+                # If this now shows up in a real log capture, it means
+                # Settings already holds a non-blank value on both fields
+                # -- contradicting what's visible on screen, which would
+                # point at a UI display issue rather than anything in
+                # this function.
+                xbmc.log(f"[RemoteTerm] map center: using already-configured location from "
+                          f"Settings: {lat_raw}, {lon_raw}", xbmc.LOGINFO)
                 return float(lat_raw), float(lon_raw)
             config = self.get_radio_config()
-            if config:
-                lat, lon = config.get("lat"), config.get("lon")
-                if lat is not None and lon is not None and (lat, lon) != (0, 0):
-                    self.addon.setSetting('map_center_lat', str(lat))
-                    self.addon.setSetting('map_center_lon', str(lon))
-                    xbmc.log(f"[RemoteTerm] auto-seeded map center from the radio's own "
-                              f"GPS config: {lat}, {lon}", xbmc.LOGINFO)
-                    return lat, lon
-            return None
-        except (TypeError, ValueError):
+            if not config:
+                # _get() already logs the specific request failure (status
+                # code, timeout, connection error, etc.) at the point it
+                # happens, so nothing further to add here beyond confirming
+                # THIS call is why map_center is about to return None --
+                # otherwise a report of "lat/lon never got seeded" is
+                # indistinguishable in the log from the radio genuinely
+                # having no GPS fix (the other branch below), and there
+                # was no way to tell them apart without this line.
+                xbmc.log("[RemoteTerm] map center not seeded: GET /api/radio/config returned nothing "
+                          "(see the request failure logged just above, if any)", xbmc.LOGINFO)
+                return None
+            lat, lon = config.get("lat"), config.get("lon")
+            if lat is None or lon is None or (lat, lon) == (0, 0):
+                # Confirmed real report: a user's map/distance settings
+                # stayed blank on their TV with no visible explanation.
+                # This is the ambiguous case that report turned out to be
+                # -- the request succeeded, but the radio itself reported
+                # no real location (never got a GPS fix, or has no GPS
+                # hardware at all), which is a legitimate, expected state,
+                # not a bug -- manual entry is genuinely the only option
+                # for that radio. But from the outside, "succeeded with
+                # nothing useful" and "silently failed" looked identical,
+                # so there was no way to tell which one a given report
+                # actually was without this line.
+                xbmc.log(f"[RemoteTerm] map center not seeded: radio config returned lat={lat!r} lon={lon!r} "
+                          f"-- radio likely has no GPS fix; manual entry in settings is required", xbmc.LOGINFO)
+                return None
+            self.addon.setSetting('map_center_lat', str(lat))
+            self.addon.setSetting('map_center_lon', str(lon))
+            xbmc.log(f"[RemoteTerm] auto-seeded map center from the radio's own "
+                      f"GPS config: {lat}, {lon}", xbmc.LOGINFO)
+            return lat, lon
+        except (TypeError, ValueError) as e:
+            # Confirmed real gap, found while closing out every remaining
+            # unlogged path in this property: this is the only place left
+            # that could still return silently -- if either stored
+            # setting exists but isn't parseable as a float (leftover
+            # garbage from a bad manual entry, for instance), float()
+            # above raises ValueError, which lands here with nothing
+            # logged. Same principle as every other branch in this
+            # function now: whatever happens, something ends up in the
+            # log instead of a bare, unexplained None.
+            xbmc.log(f"[RemoteTerm] map center not seeded: unexpected error reading/parsing "
+                      f"location settings or radio config: {e}", xbmc.LOGINFO)
             return None
 
     @property

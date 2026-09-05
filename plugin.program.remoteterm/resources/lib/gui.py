@@ -145,26 +145,10 @@ ID_ANALYTICS_BAR_RX = 1143
 ID_ANALYTICS_BAR_RX_LABEL = 1144
 ID_ANALYTICS_BAR_RX_COUNTS = 1145
 ID_ANALYTICS_INTENSITY_BAR = 1146
-ID_ANALYTICS_INTENSITY_BAR_AMBER = 1148
-ID_ANALYTICS_INTENSITY_BAR_RED = 1149
-ID_ANALYTICS_BAR_TX_AMBER = 1160
-ID_ANALYTICS_BAR_TX_RED = 1161
-ID_ANALYTICS_BAR_RX_AMBER = 1162
-ID_ANALYTICS_BAR_RX_RED = 1163
 ID_ANALYTICS_LIVE_FEED = 1170
 ID_ANALYTICS_INTENSITY_LABEL = 1147
 ID_ANALYTICS_UTIL_BAR = 1180
-ID_ANALYTICS_UTIL_BAR_AMBER = 1181
-ID_ANALYTICS_UTIL_BAR_RED = 1182
-ID_ANALYTICS_INTENSITY_BAR_DARKRED = 1210
-ID_ANALYTICS_UTIL_BAR_DARKRED = 1211
-ID_ANALYTICS_BAR_TX_DARKRED = 1212
-ID_ANALYTICS_BAR_RX_DARKRED = 1213
 ID_ANALYTICS_UTIL_LABEL = 1183
-ID_ANALYTICS_INTENSITY_GLOW = (1190, 1191, 1192, 1220)
-ID_ANALYTICS_UTIL_GLOW = (1193, 1194, 1195, 1221)
-ID_ANALYTICS_TX_GLOW = (1196, 1197, 1198, 1222)
-ID_ANALYTICS_RX_GLOW = (1199, 1200, 1201, 1223)
 
 ID_NAV_TRENDS_BTN = 1500
 ID_TRENDS_BACK = 1501
@@ -873,6 +857,17 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
                       "confirmation that Kodi re-invoked onInit mid-session)", xbmc.LOGWARNING)
             return
         self._initialized = True
+        # A checkable build marker: this whole conversation's history has
+        # repeatedly hit the same wall diagnosing a report -- a fix gets
+        # shipped, the next log shows no trace of it at all, and there's
+        # no way to tell "the fix isn't in what's actually running" apart
+        # from "it ran and did nothing" without asking the person to dig
+        # up their addon.xml. One line here removes the ambiguity for
+        # every future report, not just this one.
+        try:
+            xbmc.log(f"[RemoteTerm] starting addon version {self.api.addon.getAddonInfo('version')}", xbmc.LOGINFO)
+        except Exception:
+            pass
 
         self.convo_list = self.getControl(ID_CONVO_LIST)
         self.message_list = self.getControl(ID_MESSAGE_LIST)
@@ -921,6 +916,51 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
         self._start_message_poll()
         self._start_live_updates()
         self._start_notification_sync()
+        # Confirmed real report: a user found their map/distance location
+        # settings still blank after using the addon normally, with no
+        # indication anything was wrong or any action needed on their
+        # part. The auto-seed logic in api.py's map_center property is
+        # correct and does pull real lat/lon from the radio's own
+        # GET /api/radio/config -- but it's a property, only evaluated
+        # as a side effect of actually opening the Map tab or sorting
+        # Nodes by distance. A user who checks Settings (or simply
+        # never visits either of those two tabs) first would never
+        # trigger it at all, seeing blank fields with nothing to explain
+        # why, regardless of whether their radio actually has real GPS
+        # data. Touching the property once here, right at startup,
+        # gives every session a chance to auto-fill immediately rather
+        # than depending on which tab happens to be opened first -- on
+        # a background thread since it's a real network call.
+        #
+        # This line logs unconditionally, before the thread even starts,
+        # specifically so a future log capture can distinguish "this
+        # code isn't running yet" from "it ran and something failed" --
+        # the previous two attempts to diagnose this were both blocked
+        # by not being able to tell those apart from the log alone.
+        xbmc.log("[RemoteTerm] _do_init: starting startup map-center seed attempt", xbmc.LOGINFO)
+        threading.Thread(target=self._seed_map_center_at_startup, daemon=True).start()
+
+    def _seed_map_center_at_startup(self):
+        """Just accessing self.api.map_center is enough to trigger its own
+        auto-seed side effect (see api.py) -- but confirmed real bug in
+        THIS wrapper's first version: it was a bare, unguarded lambda
+        passed straight to threading.Thread, unlike every other
+        background thread in this file, which all point at a named
+        function that does its own try/except internally. map_center's
+        own except clause only catches (TypeError, ValueError); any
+        other exception (a Kodi Settings-API call behaving unexpectedly
+        during early startup is a real, seen-elsewhere possibility, not
+        a hypothetical one) would have propagated straight out of that
+        bare lambda and killed the thread completely silently -- no
+        traceback in kodi.log, nothing. That silence was indistinguishable
+        from the feature simply never running, which is exactly what a
+        real log capture showed: no request, no success, no failure,
+        nothing at all. This wrapper exists solely to guarantee that
+        whatever happens here, something ends up in the log."""
+        try:
+            self.api.map_center
+        except Exception as e:
+            xbmc.log(f"[RemoteTerm] startup map-center seed attempt failed unexpectedly: {e}", xbmc.LOGINFO)
 
     def close(self):
         self._stop_event.set()
@@ -1868,9 +1908,7 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
                 else:
                     tx_util_pct = 0
                 tx_util_tier = _pct_tier(tx_util_pct)
-                self.setProperty("intensity_tier", tx_util_tier)
-                self._set_tiered_bar((ID_ANALYTICS_INTENSITY_BAR, ID_ANALYTICS_INTENSITY_BAR_AMBER, ID_ANALYTICS_INTENSITY_BAR_RED, ID_ANALYTICS_INTENSITY_BAR_DARKRED),
-                                      ID_ANALYTICS_INTENSITY_GLOW, tx_util_pct)
+                self._set_bar_fill(ID_ANALYTICS_INTENSITY_BAR, tx_util_pct, _bar_tier_color(tx_util_tier), max_width=776)
                 try:
                     self.getControl(ID_ANALYTICS_INTENSITY_LABEL).setLabel(f"{tx_util_pct}% of airtime")
                 except Exception:
@@ -1895,9 +1933,7 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
                 else:
                     utilization_pct = 0
                 utilization_tier = _pct_tier(utilization_pct)
-                self.setProperty("utilization_tier", utilization_tier)
-                self._set_tiered_bar((ID_ANALYTICS_UTIL_BAR, ID_ANALYTICS_UTIL_BAR_AMBER, ID_ANALYTICS_UTIL_BAR_RED, ID_ANALYTICS_UTIL_BAR_DARKRED),
-                                      ID_ANALYTICS_UTIL_GLOW, utilization_pct)
+                self._set_bar_fill(ID_ANALYTICS_UTIL_BAR, utilization_pct, _bar_tier_color(utilization_tier), max_width=776)
                 try:
                     self.getControl(ID_ANALYTICS_UTIL_LABEL).setLabel(f"{utilization_pct}% of airtime")
                 except Exception:
@@ -1918,9 +1954,7 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
             region_scope = stats.get("region_scope_24h") or {}
             scoped_pct = int(round(region_scope.get("scoped_pct", 0) or 0))
             scoped_tier = _pct_tier(scoped_pct)
-            self.setProperty("tx_tier", scoped_tier)
-            self._set_tiered_bar((ID_ANALYTICS_BAR_TX, ID_ANALYTICS_BAR_TX_AMBER, ID_ANALYTICS_BAR_TX_RED, ID_ANALYTICS_BAR_TX_DARKRED),
-                                  ID_ANALYTICS_TX_GLOW, scoped_pct)
+            self._set_bar_fill(ID_ANALYTICS_BAR_TX, scoped_pct, _bar_tier_color(scoped_tier), max_width=776)
             try:
                 self.getControl(ID_ANALYTICS_BAR_TX_LABEL).setLabel(f"{scoped_pct}%")
             except Exception:
@@ -1960,9 +1994,7 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
             contact_count = stats.get("contact_count", 0) or 0
             active_pct = _log_pct(heard_1h, 20)
             active_tier = _rate_tier(heard_1h, 2, 5, 10)
-            self.setProperty("rx_tier", active_tier)
-            self._set_tiered_bar((ID_ANALYTICS_BAR_RX, ID_ANALYTICS_BAR_RX_AMBER, ID_ANALYTICS_BAR_RX_RED, ID_ANALYTICS_BAR_RX_DARKRED),
-                                  ID_ANALYTICS_RX_GLOW, active_pct)
+            self._set_bar_fill(ID_ANALYTICS_BAR_RX, active_pct, _bar_tier_color(active_tier), max_width=776)
             try:
                 self.getControl(ID_ANALYTICS_BAR_RX_LABEL).setLabel(f"{heard_1h}/{contact_count}")
             except Exception:
@@ -2039,12 +2071,17 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
         """Simple bar driven entirely by resizing/recoloring one plain
         image control -- setWidth() + setColorDiffuse(), the same
         mechanism already confirmed reliable for the battery fill
-        indicator. Used in place of the stacked-progress-bar-per-tier
-        technique for the two Dashboard bars specifically, after that
-        approach was confirmed (via a second screenshot showing the same
-        symptom) not to render correctly for them despite working
-        correctly on Analytics -- this sidesteps whatever the mismatch
-        was rather than trying to keep debugging it blind."""
+        indicator. Originally added for the two Dashboard bars after the
+        stacked-progress-bar-plus-glow-strip technique (_set_tiered_bar,
+        removed) failed for them; now used for every percentage bar in
+        the app, including the 4 Analytics ones that technique was
+        originally written for, after THAT technique also produced a
+        card-overflowing bar there -- twice, even after fixing both the
+        XML width and the Python-side max_width default that was
+        silently overriding it. Given the same underlying mechanism
+        failed in the same way on both pages, it's retired everywhere
+        rather than patched a third time: one control per bar, one
+        function, nothing left to drift out of sync with anything else."""
         width = max(1, int(round(max_width * pct / 100)))
         try:
             ctrl = self.getControl(image_id)
@@ -2052,30 +2089,6 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
             ctrl.setWidth(width)
         except Exception as e:
             xbmc.log(f"[RemoteTerm] _set_bar_fill({image_id}) failed: {e}", xbmc.LOGDEBUG)
-
-    def _set_tiered_bar(self, bar_ids, glow_ids, pct, max_width=800):
-        """Sets percent on all three stacked tier-bars for a bar group
-        (only the currently-visible one actually renders, but Kodi's
-        getControl() needs an unambiguous id, so all three get the same
-        value) AND matches each glow-strip's width to that same fill --
-        confirmed real bug: the glow strips were fixed at max_width
-        regardless of actual percent, so a bar sitting at or near 0% still
-        showed a full-width, semi-transparent glow behind it, making the
-        whole box look filled even when the real bar underneath was
-        empty. This is what actually produced "the green bar extends too
-        far / red looks shorter" -- the glow, not the bar itself, was the
-        part staying full width."""
-        width = max(4, int(round(max_width * pct / 100)))
-        for bar_id in bar_ids:
-            try:
-                self.getControl(bar_id).setPercent(pct)
-            except Exception:
-                pass
-        for glow_id in glow_ids:
-            try:
-                self.getControl(glow_id).setWidth(width)
-            except Exception:
-                pass
 
     def _load_recent_activity(self):
         activity = self.getControl(ID_ACTIVITY_LIST)
@@ -3301,14 +3314,24 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
                 self._load_analytics()
 
         elif control_id == ID_NAV_DASHBOARD:
-            # Deliberately a no-op: Dashboard is a visual-only overview
-            # shown by default (and reachable via Back from anywhere per
-            # _dispatch_action) -- there's nothing to "enter" by clicking
-            # its own nav icon, so pressing Select/Enter on it while
-            # already sitting on the rail does nothing rather than
-            # reloading and re-switching to a tab that's likely already
-            # showing.
-            pass
+            # Confirmed real bug: this used to be a deliberate no-op, on
+            # the reasoning that Dashboard was always reachable via Back
+            # from any tab, so clicking its own icon had nothing to do.
+            # That reasoning went stale when Back navigation was changed
+            # (see _dispatch_action) to stay on whichever tab you're
+            # already on instead of always jumping to Dashboard -- once
+            # that changed, this no-op meant clicking this icon from any
+            # OTHER tab did genuinely nothing at all: the tab property
+            # never changed, so Dashboard's own content group (gated on
+            # Window.Property(tab)==dashboard) never became visible,
+            # regardless of what the nav rail itself showed as focused.
+            # A real report confirmed exactly this: selecting Dashboard
+            # after backing out of a different tab left that other tab's
+            # content on screen with no way to actually reach Dashboard
+            # from the rail. Now matches every other nav icon's own
+            # handler: unconditionally reload and switch.
+            self._load_dashboard()
+            self._switch_tab(TAB_DASHBOARD, ID_NAV_DASHBOARD)
 
         elif control_id == ID_NAV_CHATS:
             self._populate_convo_list(self._visible_conversations())
