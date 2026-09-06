@@ -146,6 +146,15 @@ ID_ANALYTICS_BAR_RX_LABEL = 1144
 ID_ANALYTICS_BAR_RX_COUNTS = 1145
 ID_ANALYTICS_INTENSITY_BAR = 1146
 ID_ANALYTICS_LIVE_FEED = 1170
+ID_WATERFALL_TOGGLE = 1175
+ID_WATERFALL_BACKDROP = 1176
+ID_WATERFALL_LIVE_LABEL = 1177
+ID_WATERFALL_LABEL = 1178
+ID_WATERFALL_SUBTITLE = 1932
+ID_WATERFALL_DOT = 1179
+ID_WATERFALL_ON_INDICATOR = 1931
+ID_WATERFALL_WAITING_LABEL = 1930
+WATERFALL_BAR_IDS = tuple(range(1900, 1930))
 ID_ANALYTICS_INTENSITY_LABEL = 1147
 ID_ANALYTICS_UTIL_BAR = 1180
 ID_ANALYTICS_UTIL_LABEL = 1183
@@ -197,6 +206,38 @@ GREEN = "FF00FF66"
 RED = "FFFF1744"
 AMBER = "FFFFD500"
 BLUE = "FF2A6DF4"
+
+
+def _rssi_to_waterfall_color(rssi):
+    """Classic SDR-waterfall-style colormap (the same visual language as
+    e.g. GQRX/SDR#'s default palette): weak signal fades through dark
+    blue/purple, mid-strength through magenta/orange, strong through
+    yellow to near-white. Deliberately continuous rather than the 4
+    discrete tiers used elsewhere on this page (green/amber/red/darkred)
+    -- a waterfall's whole visual point is showing gradual change, and
+    four flat bands would look like a bar chart wearing a waterfall's
+    name rather than an actual one. Uses the same -120..-30 dBm range
+    already established for the RSSI gauge elsewhere on this page, so
+    "strong" means the same thing here that it does there. Returns an
+    "FF"-prefixed ARGB hex string, ready for setColorDiffuse()."""
+    t = max(0.0, min(1.0, (rssi + 120) / 90))
+    stops = [
+        (0.00, (10, 8, 40)),
+        (0.25, (40, 10, 110)),
+        (0.50, (160, 20, 110)),
+        (0.72, (240, 100, 30)),
+        (0.88, (250, 200, 40)),
+        (1.00, (255, 255, 230)),
+    ]
+    for i in range(len(stops) - 1):
+        t0, c0 = stops[i]
+        t1, c1 = stops[i + 1]
+        if t0 <= t <= t1:
+            f = (t - t0) / (t1 - t0) if t1 > t0 else 0.0
+            r, g, b = (int(c0[j] + (c1[j] - c0[j]) * f) for j in range(3))
+            return f"FF{r:02X}{g:02X}{b:02X}"
+    r, g, b = stops[-1][1]
+    return f"FF{r:02X}{g:02X}{b:02X}"
 
 
 def _bar_tier_color(tier):
@@ -770,6 +811,7 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
                                             # actual response text
                                             # discarded entirely
         self.favorites_only = False
+        self.show_waterfall = False
         self.selected_repeater = None
         self._last_convo_snapshot = None  # see _convo_snapshot -- lets a WS
                                            # contact/channel event skip a
@@ -911,6 +953,19 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
         self.refresh()
         self.setFocusId(ID_NAV_DASHBOARD)
         self._load_dashboard()
+        # Confirmed real request: Analytics' own gauges/bars/live feed
+        # stayed completely blank until the tab was actually visited even
+        # once, since _load_analytics() -- unlike Dashboard's own load
+        # just above -- was only ever called from that tab's own nav-icon
+        # click handler and its autorefresh loop, and that loop is itself
+        # gated on the tab already being on screen (see
+        # _start_analytics_autorefresh below). A first-time visit landed
+        # on a page with nothing populated yet, and had to wait out a
+        # full refresh cycle before showing anything real. Loading it
+        # once here mirrors exactly what already happens for Dashboard on
+        # the line above -- on a background thread, since this one makes
+        # two real network calls (see _load_analytics's own docstring).
+        threading.Thread(target=self._load_analytics, daemon=True).start()
         self._start_dashboard_autorefresh()
         self._start_analytics_autorefresh()
         self._start_message_poll()
@@ -939,6 +994,90 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
         # by not being able to tell those apart from the log alone.
         xbmc.log("[RemoteTerm] _do_init: starting startup map-center seed attempt", xbmc.LOGINFO)
         threading.Thread(target=self._seed_map_center_at_startup, daemon=True).start()
+        # Confirmed real report, across three full rounds of fixes that
+        # each ruled out the previous theory: the Python side of the
+        # waterfall toggle was never the problem -- extensive logging
+        # confirmed every single toggle correctly flipped the property,
+        # every single render call found packets and colored all 30 bars
+        # with zero failures, every time, while the screen kept showing
+        # nothing. Removing the XML-side <visible> conditions in favor of
+        # Python-only setVisible() calls (the previous attempt) made no
+        # difference either. The one thing every failing control had in
+        # common: each started as <visible>false</visible> from the very
+        # first frame the window ever drew, having never been shown even
+        # once. Hiding a control that WAS already showing worked
+        # perfectly every time (confirmed via a screenshot: the Live Feed
+        # list, its title, and its dot all correctly disappeared) --
+        # showing one that had been invisible since window creation
+        # never did, suggesting Kodi doesn't fully initialize a control's
+        # render resources until it's genuinely been visible at least
+        # once. These controls now start visible="true" in the XML so
+        # Kodi initializes them properly at parse time, and are hidden
+        # here, once, immediately after that initial parse -- so every
+        # later setVisible(True) from the toggle is reviving a control
+        # that has already been fully rendered before, not asking Kodi to
+        # show something for the very first time.
+        try:
+            for ctrl_id in (ID_WATERFALL_LABEL, ID_WATERFALL_SUBTITLE, ID_WATERFALL_BACKDROP,
+                             ID_WATERFALL_ON_INDICATOR, ID_WATERFALL_WAITING_LABEL) + WATERFALL_BAR_IDS:
+                self.getControl(ctrl_id).setVisible(False)
+        except Exception as e:
+            xbmc.log(f"[RemoteTerm] waterfall startup hide pass failed: {e}", xbmc.LOGERROR)
+        # Confirmed real request: a skin's Program Addons widget (or a
+        # custom shortcut) can only ever launch this addon fresh, always
+        # landing on Dashboard -- there was no way for a widget entry, or
+        # a shortcut someone builds themselves, to jump straight to e.g.
+        # Chats or the Map. main.py already had exactly the right
+        # mechanism for this (see its own "mapinfo" argument, used for a
+        # completely different purpose): a program addon is re-invoked
+        # via RunScript(addon_id, argument), which arrives as sys.argv[1]
+        # -- extended here to also recognize a tab name and act on it.
+        # Dashboard itself is still fully loaded above regardless of
+        # where this sends the user, so backing out to it later shows
+        # real data immediately instead of nothing until the next
+        # autorefresh tick.
+        requested_tab = getattr(self, "initial_tab", None)
+        if requested_tab:
+            xbmc.log(f"[RemoteTerm] _do_init: launched directly into tab={requested_tab!r} "
+                      f"via RunScript argument", xbmc.LOGINFO)
+            self._launch_into_tab(requested_tab)
+
+    def _launch_into_tab(self, tab_name):
+        """Jumps directly into a specific tab right after the normal
+        Dashboard-first startup has already run (see the end of
+        _do_init above) -- the actual mechanism behind letting a skin's
+        Program Addons widget, or a custom shortcut, deep-link straight
+        into e.g. Chats or the Map instead of requiring the addon to be
+        opened and the nav rail navigated manually every time.
+        Deliberately mirrors each tab's own nav-icon click handler by
+        duplicating its exact steps rather than sharing code with it --
+        keeping this fully separate means nothing about what a normal
+        rail click does can be accidentally changed by this. Silently
+        does nothing for "dashboard" itself or any unrecognized name,
+        since Dashboard is already the default landing state set up
+        above."""
+        if tab_name == "chats":
+            self._populate_convo_list(self._visible_conversations())
+            self._switch_tab(TAB_CHATS, ID_CONVO_LIST)
+            threading.Thread(target=self._load_notification_state, daemon=True).start()
+        elif tab_name == "nodes":
+            self.contacts_filter = None
+            self._populate_contacts()
+            self._switch_tab(TAB_CONTACTS, ID_CONTACTS_FILTER_ALL)
+        elif tab_name == "repeaters":
+            threading.Thread(target=self._load_repeater_console, daemon=True).start()
+            self._switch_tab(TAB_REPEATERS, ID_REPEATER_PICKER)
+        elif tab_name == "map":
+            threading.Thread(target=self._load_map, daemon=True).start()
+            self._switch_tab(TAB_MAP, ID_MAP_REFRESH)
+        elif tab_name == "packets":
+            self._render_packet_feed()
+            self._switch_tab(TAB_PACKETS, ID_PACKET_LIST)
+        elif tab_name == "analytics":
+            self._load_analytics()
+            self._switch_tab(TAB_ANALYTICS, ID_REFRESH)
+            if self.show_waterfall:
+                self._generate_waterfall_bars()
 
     def _seed_map_center_at_startup(self):
         """Just accessing self.api.map_center is enough to trigger its own
@@ -1379,7 +1518,10 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
         if self.getProperty("tab") == TAB_PACKETS:
             self._render_packet_feed()
         elif self.getProperty("tab") == TAB_ANALYTICS:
-            self._render_analytics_live_feed()
+            if self.show_waterfall:
+                self._generate_waterfall_bars()
+            else:
+                self._render_analytics_live_feed()
 
     def _poll_new_messages(self):
         if not self.selected:
@@ -3452,6 +3594,11 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
         elif control_id == ID_NAV_ANALYTICS:
             self._load_analytics()
             self._switch_tab(TAB_ANALYTICS, ID_REFRESH)
+            if self.show_waterfall:
+                self._generate_waterfall_bars()
+
+        elif control_id == ID_WATERFALL_TOGGLE:
+            self._toggle_waterfall()
 
         elif control_id == ID_NAV_TRENDS_BTN:
             self._load_trends()
@@ -3699,6 +3846,105 @@ class RemoteTermWindow(xbmcgui.WindowXMLDialog):
         for p in packets:
             feed.addItem(xbmcgui.ListItem(self._format_packet_compact(p)))
         self._guard_analytics_focus(prev_focus)
+
+    def _generate_waterfall_bars(self):
+        """Colors each of the 30 waterfall row controls (ids in
+        WATERFALL_BAR_IDS) from the most recent packets in packet_feed --
+        the same real, already-flowing data as the Live Feed list this
+        panel swaps with, not a separate or fabricated source. Newest
+        packet at the top (row 0), each older one a row further down,
+        matching how a real waterfall display actually reads: new data
+        enters at the top and history is pushed downward, not sideways.
+        This addon has no per-frequency signal data to show (this radio
+        has no spectrum-analyzer hardware -- see the class-level notes on
+        the WATERFALL_BAR_IDS constant), so unlike a true SDR waterfall
+        each row is a single flat color rather than a horizontal
+        spectrum slice; RSSI over time is the closest honest equivalent
+        available from what this radio actually exposes. Packets with no
+        rssi reading (rare, but seen in a real capture) are skipped
+        rather than drawn as a misleading color -- an absent row reads
+        honestly as "no data here", a colored one wouldn't. Any row
+        beyond however many real packets currently exist is set fully
+        transparent instead of carrying over a stale color from a
+        previous render, so a freshly-opened waterfall with few packets
+        so far shows exactly that -- a partly-filled strip, not a full
+        one lying about how much real data backs it.
+
+        Confirmed real report: toggling this on/off (16 clicks in one
+        real session, no visible change reported any of those times, no
+        exception surfaced either) left no way to tell WHERE it was
+        failing -- every per-row getControl() failure here was being
+        silently swallowed and skipped, individually, with nothing to
+        show for it afterward. This function running to completion
+        without error says nothing about whether any row was actually
+        found and colored; logging the real counts is the only way to
+        tell those two apart from a log capture.
+
+        Confirmed by that same logging afterward: every single toggle
+        correctly flipped the property, and every single render call
+        found packets and successfully colored all 30 rows -- 0
+        failures, every time -- while a screenshot taken during an "ON"
+        moment still showed the old Live Feed list on screen. The Python
+        side was never the problem: see _do_init's own notes on why
+        these controls now start visible="true" and get hidden once at
+        startup instead, which is what actually fixed that."""
+        try:
+            packets_with_rssi = [p for p in list(self.packet_feed) if p.get("rssi") is not None]
+        except Exception:
+            packets_with_rssi = []
+        newest_first = packets_with_rssi[:len(WATERFALL_BAR_IDS)]
+        colored = 0
+        failed = 0
+        first_error = None
+        for i, bar_id in enumerate(WATERFALL_BAR_IDS):
+            try:
+                ctrl = self.getControl(bar_id)
+            except Exception as e:
+                failed += 1
+                if first_error is None:
+                    first_error = str(e)
+                continue
+            if i < len(newest_first):
+                packet = newest_first[i]
+                ctrl.setColorDiffuse(_rssi_to_waterfall_color(packet["rssi"]))
+                colored += 1
+            else:
+                ctrl.setColorDiffuse("00000000")
+        xbmc.log(f"[RemoteTerm] waterfall render: {len(packets_with_rssi)} packets with rssi in "
+                  f"packet_feed, {colored} rows actually colored, {failed} rows failed to resolve"
+                  f"{f' (first error: {first_error})' if first_error else ''}", xbmc.LOGINFO)
+        ready = bool(newest_first)
+        self.setProperty("waterfall_ready", "true" if ready else "")
+        try:
+            self.getControl(ID_WATERFALL_WAITING_LABEL).setVisible(not ready)
+        except Exception as e:
+            xbmc.log(f"[RemoteTerm] waterfall waiting-label setVisible failed: {e}", xbmc.LOGINFO)
+
+    def _toggle_waterfall(self):
+        self.show_waterfall = not self.show_waterfall
+        self.setProperty("show_waterfall", "true" if self.show_waterfall else "false")
+        xbmc.log(f"[RemoteTerm] waterfall toggled: now {'ON' if self.show_waterfall else 'OFF'} "
+                  f"(show_waterfall property set to {self.getProperty('show_waterfall')!r})", xbmc.LOGINFO)
+        try:
+            self.getControl(ID_WATERFALL_LIVE_LABEL).setVisible(not self.show_waterfall)
+            self.getControl(ID_WATERFALL_LABEL).setVisible(self.show_waterfall)
+            self.getControl(ID_WATERFALL_SUBTITLE).setVisible(self.show_waterfall)
+            self.getControl(ID_WATERFALL_DOT).setVisible(not self.show_waterfall)
+            self.getControl(ID_WATERFALL_ON_INDICATOR).setVisible(self.show_waterfall)
+            self.getControl(ID_ANALYTICS_LIVE_FEED).setVisible(not self.show_waterfall)
+            self.getControl(ID_WATERFALL_BACKDROP).setVisible(self.show_waterfall)
+            for bar_id in WATERFALL_BAR_IDS:
+                self.getControl(bar_id).setVisible(self.show_waterfall)
+            if not self.show_waterfall:
+                self.getControl(ID_WATERFALL_WAITING_LABEL).setVisible(False)
+        except Exception as e:
+            xbmc.log(f"[RemoteTerm] waterfall setVisible pass failed: {e}", xbmc.LOGERROR)
+        if self.show_waterfall:
+            # Paint immediately from whatever's already in packet_feed,
+            # rather than leaving 30 blank bars until the next raw_packet
+            # event happens to arrive -- which, on a quiet mesh, could be
+            # a genuinely long wait.
+            self._generate_waterfall_bars()
 
     def onAction(self, action):
         try:

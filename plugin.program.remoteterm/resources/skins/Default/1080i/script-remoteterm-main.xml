@@ -73,12 +73,38 @@
         <!-- Refresh button: background/click on the button, glyph drawn as a
              separately-sized sibling image so it's never clipped/oversized
              the way Kodi's auto-sized <icon> tag rendered it. -->
+        <!-- Confirmed real conflict, from direct feedback: "Down" from
+             this button is the intuitive direction to the Waterfall
+             toggle on Analytics (it sits directly below this button
+             there), but "Down" was already committed to reaching "View
+             Network Trends" on Dashboard -- a single <ondown> tag can
+             only ever point at one control, and Kodi has no conditional
+             version of it. Split into two tab-scoped copies sharing this
+             same id, same look, same click behavior (both still trigger
+             the identical refresh action) -- the same proven pattern
+             already used elsewhere in this app for a control whose
+             behavior needs to differ by which tab is showing -- so each
+             copy can have its OWN <ondown> instead of fighting over one.
+             Any transient focus hiccup right at the moment of switching
+             between them is already covered: entering a tab always
+             explicitly re-asserts focus via _switch_tab immediately
+             after changing the tab property, the same safeguard that
+             already protects the other twin-control pair in this file. -->
         <control type="button" id="103">
             <left>1818</left><top>28</top><width>74</width><height>74</height>
             <label></label>
             <texturenofocus colordiffuse="55FFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
             <texturefocus border="26" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
             <onleft>9001</onleft><ondown>1500</ondown>
+            <visible>!String.IsEqual(Window.Property(tab),analytics)</visible>
+        </control>
+        <control type="button" id="103">
+            <left>1818</left><top>28</top><width>74</width><height>74</height>
+            <label></label>
+            <texturenofocus colordiffuse="55FFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texturenofocus>
+            <texturefocus border="26" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+            <onleft>9001</onleft><ondown>1175</ondown>
+            <visible>String.IsEqual(Window.Property(tab),analytics)</visible>
         </control>
         <control type="image">
             <left>1837</left><top>47</top><width>36</width><height>36</height>
@@ -101,6 +127,32 @@
              Nodes, since it's a directory of every node type, not just
              people you message). Each button carries its own onright so
              entering a tab reliably lands on that tab's first control. -->
+        <!-- Persistent "active tab" glow, one per icon slot: a dim,
+             low-opacity version of the same rounded pill used for
+             genuine keyboard focus, shown whenever that tab is the one
+             actually on screen -- regardless of where focus currently
+             is. Previously the ONLY persistent indicator of "which tab
+             am I on" was the thin 6px edge bar below; that's still
+             correct and kept as a crisp secondary cue, but on its own it
+             reads as quite minimal next to the glowing, rounded language
+             used everywhere else in this redesign. This gives the rail
+             a real 3-state visual language instead of 2: nothing
+             (inactive), a soft persistent glow (active tab, focus
+             elsewhere), and the existing bright pill (this exact icon
+             currently has keyboard focus) -- placed here, before the
+             grouplist, so it renders behind the icons/labels/buttons
+             rather than covering them. Can't live inside the grouplist
+             itself: that container auto-flows its children vertically,
+             so an extra sibling control there would consume its own
+             slot and push every button below it down the rail. -->
+        <control type="image"><left>0</left><top>130</top><width>140</width><height>118</height><texture border="26" colordiffuse="3800E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture><visible>String.IsEqual(Window.Property(tab),dashboard)</visible></control>
+        <control type="image"><left>0</left><top>251</top><width>140</width><height>118</height><texture border="26" colordiffuse="3800E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture><visible>String.IsEqual(Window.Property(tab),chats)</visible></control>
+        <control type="image"><left>0</left><top>372</top><width>140</width><height>118</height><texture border="26" colordiffuse="3800E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture><visible>String.IsEqual(Window.Property(tab),contacts)</visible></control>
+        <control type="image"><left>0</left><top>493</top><width>140</width><height>118</height><texture border="26" colordiffuse="3800E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture><visible>String.IsEqual(Window.Property(tab),repeaters)</visible></control>
+        <control type="image"><left>0</left><top>614</top><width>140</width><height>118</height><texture border="26" colordiffuse="3800E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture><visible>String.IsEqual(Window.Property(tab),map)</visible></control>
+        <control type="image"><left>0</left><top>735</top><width>140</width><height>118</height><texture border="26" colordiffuse="3800E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture><visible>String.IsEqual(Window.Property(tab),packets)</visible></control>
+        <control type="image"><left>0</left><top>856</top><width>140</width><height>118</height><texture border="26" colordiffuse="3800E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture><visible>String.IsEqual(Window.Property(tab),analytics)</visible></control>
+
         <control type="grouplist" id="9000">
             <left>0</left><top>130</top><width>140</width><height>950</height>
             <itemgap>3</itemgap><orientation>vertical</orientation>
@@ -257,8 +309,8 @@
             <control type="button" id="1500">
                 <left>1620</left><top>154</top><width>270</width><height>50</height>
                 <label>View Network Trends</label><font>font12</font><align>center</align>
-                <texturenofocus border="18" colordiffuse="6000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="18" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="6000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <textcolor>FFFFFFFF</textcolor>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <!-- Confirmed real bug: this button had no navigation
@@ -500,8 +552,8 @@
             <control type="button" id="340">
                 <left>172</left><top>136</top><width>420</width><height>44</height>
                 <label>All Conversations</label><font>font11</font><align>center</align>
-                <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <visible>!String.IsEqual(Window.Property(favorites_only),true)</visible>
                 <onleft>340</onleft><onright>330</onright><onup>340</onup><ondown>200</ondown>
@@ -509,8 +561,8 @@
             <control type="button" id="340">
                 <left>172</left><top>136</top><width>420</width><height>44</height>
                 <label>Favorites Only</label><font>font11</font><textcolor>FFF5A623</textcolor><align>center</align>
-                <texturenofocus border="16" colordiffuse="2AF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="16" colordiffuse="FFF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="12" colordiffuse="2AF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="12" colordiffuse="FFF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <visible>String.IsEqual(Window.Property(favorites_only),true)</visible>
                 <onleft>340</onleft><onright>330</onright><onup>340</onup><ondown>200</ondown>
@@ -522,7 +574,7 @@
                 <itemlayout height="64" width="420">
                     <control type="image">
                         <visible>String.IsEmpty(ListItem.Property(header))</visible>
-                        <left>4</left><width>412</width><height>60</height><texture border="18" colordiffuse="1AFFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture>
+                        <left>4</left><width>412</width><height>60</height><texture border="14" colordiffuse="1AFFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture>
                     </control>
                     <control type="image">
                         <visible>String.IsEmpty(ListItem.Property(header))</visible>
@@ -558,7 +610,7 @@
                 <focusedlayout height="64" width="420">
                     <control type="image">
                         <visible>String.IsEmpty(ListItem.Property(header))</visible>
-                        <left>4</left><width>412</width><height>60</height><texture border="18" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture>
+                        <left>4</left><width>412</width><height>60</height><texture border="14" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture>
                     </control>
                     <control type="image">
                         <visible>String.IsEmpty(ListItem.Property(header))</visible>
@@ -601,24 +653,24 @@
             <control type="button" id="800">
                 <left>1292</left><top>146</top><width>250</width><height>48</height>
                 <label>Search</label><font>font12</font><align>center</align>
-                <texturenofocus border="17" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="17" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="13" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="13" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>200</onleft><onup>800</onup><ondown>310</ondown><onright>331</onright>
             </control>
             <control type="button" id="331">
                 <left>1552</left><top>146</top><width>220</width><height>48</height>
                 <label>Notify: Off</label><font>font12</font><align>center</align>
-                <texturenofocus border="17" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="17" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="13" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="13" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>800</onleft><onup>331</onup><ondown>310</ondown><onright>330</onright>
             </control>
             <control type="button" id="330">
                 <left>1782</left><top>146</top><width>60</width><height>48</height>
                 <label></label>
-                <texturenofocus border="17" colordiffuse="2AF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="17" colordiffuse="FFF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="13" colordiffuse="2AF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="13" colordiffuse="FFF5A623">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <onleft>331</onleft><onup>330</onup><ondown>310</ondown><onright>330</onright>
             </control>
             <control type="image">
@@ -806,29 +858,29 @@
             <control type="label"><left>170</left><top>240</top><width>200</width><height>22</height><font>font11</font><textcolor>FF888888</textcolor><label>Sort by:</label></control>
             <control type="button" id="960">
                 <left>170</left><top>286</top><width>222</width><height>40</height><label>Heard</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>960</onleft><onright>961</onright><onup>960</onup><ondown>962</ondown>
             </control>
             <control type="button" id="961">
                 <left>408</left><top>286</top><width>222</width><height>40</height><label>Distance</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>960</onleft><onright>961</onright><onup>961</onup><ondown>963</ondown>
             </control>
             <control type="button" id="962">
                 <left>170</left><top>334</top><width>222</width><height>40</height><label>Fewest Hops</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>962</onleft><onright>963</onright><onup>960</onup><ondown>950</ondown>
             </control>
             <control type="button" id="963">
                 <left>408</left><top>334</top><width>222</width><height>40</height><label>Most Hops</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>962</onleft><onright>963</onright><onup>961</onup><ondown>950</ondown>
             </control>
@@ -842,11 +894,11 @@
                 <left>170</left><top>386</top><width>460</width><height>584</height>
                 <onleft>950</onleft><onright>954</onright><onup>962</onup><ondown>954</ondown>
                 <itemlayout height="60" width="460">
-                    <control type="image"><left>6</left><width>448</width><height>56</height><texture border="14" colordiffuse="1AFFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
+                    <control type="image"><left>6</left><width>448</width><height>56</height><texture border="10" colordiffuse="1AFFFFFF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
                     <control type="label"><left>26</left><width>410</width><height>60</height><font>font13</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
                 <focusedlayout height="60" width="460">
-                    <control type="image"><left>6</left><width>448</width><height>56</height><texture border="14" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texture></control>
+                    <control type="image"><left>6</left><width>448</width><height>56</height><texture border="10" colordiffuse="5000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
                     <control type="label"><left>26</left><width>410</width><height>60</height><font>font13</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
             </control>
@@ -991,36 +1043,36 @@
                 <onleft>9010</onleft><onright>9010</onright>
                 <control type="button" id="901">
                     <width>180</width><height>52</height><label>All</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>901</onup><ondown>911</ondown>
                 </control>
                 <control type="button" id="902">
                     <width>180</width><height>52</height><label>Clients</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>902</onup><ondown>912</ondown>
                 </control>
                 <control type="button" id="903">
                     <width>180</width><height>52</height><label>Repeaters</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>903</onup><ondown>913</ondown>
                 </control>
                 <control type="button" id="904">
                     <width>180</width><height>52</height><label>Room Servers</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>904</onup><ondown>914</ondown>
                 </control>
                 <control type="button" id="905">
                     <width>180</width><height>52</height><label>Sensors</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>905</onup><ondown>914</ondown>
                 </control>
@@ -1033,29 +1085,29 @@
                 <onleft>9011</onleft><onright>9011</onright>
                 <control type="button" id="911">
                     <width>260</width><height>52</height><label>Most Recently Heard</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>901</onup><ondown>900</ondown>
                 </control>
                 <control type="button" id="912">
                     <width>220</width><height>52</height><label>Distance</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>902</onup><ondown>900</ondown>
                 </control>
                 <control type="button" id="913">
                     <width>260</width><height>52</height><label>Fewest Hops</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>903</onup><ondown>900</ondown>
                 </control>
                 <control type="button" id="914">
                     <width>260</width><height>52</height><label>Most Hops</label><font>font12</font><align>center</align>
-                    <texturenofocus border="16" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                    <texturefocus border="16" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                    <texturenofocus border="12" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                    <texturefocus border="12" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                     <focusedcolor>FF0A0A12</focusedcolor>
                     <onup>904</onup><ondown>900</ondown>
                 </control>
@@ -1091,24 +1143,24 @@
             <control type="button" id="1012">
                 <left>1195</left><top>150</top><width>220</width><height>50</height>
                 <label>Regional View</label><font>font12</font><align>center</align>
-                <texturenofocus border="18" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="18" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1012</onleft><onright>1013</onright><onup>1012</onup><ondown>1015</ondown>
             </control>
             <control type="button" id="1013">
                 <left>1425</left><top>150</top><width>220</width><height>50</height>
                 <label>Local View</label><font>font12</font><align>center</align>
-                <texturenofocus border="18" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="18" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1012</onleft><onright>1001</onright><onup>1013</onup><ondown>1015</ondown>
             </control>
             <control type="button" id="1001">
                 <left>1665</left><top>150</top><width>220</width><height>50</height>
                 <label>Refresh</label><font>font12</font><align>center</align>
-                <texturenofocus border="18" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="18" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1013</onleft><onright>1001</onright><onup>1001</onup><ondown>1015</ondown>
             </control>
@@ -1155,36 +1207,36 @@
                  since a screenshot showed the single-character "W" label
                  rendering as a truncated "..." at the old size. -->
             <control type="button" id="1015"><left>1018</left><top>238</top><width>44</width><height>36</height><label>N</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <textcolor>FFFFFFFF</textcolor>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1015</onleft><onright>1015</onright><onup>1013</onup><ondown>1018</ondown>
             </control>
             <control type="button" id="1018"><left>972</left><top>278</top><width>44</width><height>36</height><label>W</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <textcolor>FFFFFFFF</textcolor>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1018</onleft><onright>1019</onright><onup>1015</onup><ondown>1016</ondown>
             </control>
             <control type="button" id="1019"><left>1018</left><top>278</top><width>44</width><height>36</height><label>H</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <textcolor>FFFFFFFF</textcolor>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1018</onleft><onright>1017</onright><onup>1015</onup><ondown>1016</ondown>
             </control>
             <control type="button" id="1017"><left>1064</left><top>278</top><width>44</width><height>36</height><label>E</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <textcolor>FFFFFFFF</textcolor>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1019</onleft><onright>1000</onright><onup>1015</onup><ondown>1016</ondown>
             </control>
             <control type="button" id="1016"><left>1018</left><top>318</top><width>44</width><height>36</height><label>S</label><font>font11</font><align>center</align>
-                <texturenofocus border="14" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturenofocus>
-                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-nav-pill.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="EE0A0A12">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="10" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
                 <textcolor>FFFFFFFF</textcolor>
                 <focusedcolor>FF0A0A12</focusedcolor>
                 <onleft>1016</onleft><onright>1016</onright><onup>1019</onup><ondown>1000</ondown>
@@ -1831,15 +1883,70 @@
             <control type="image"><left>1400</left><top>105</top><width>515</width><height>390</height><texture border="40" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-glow-ring.png</texture></control>
             <control type="image"><left>1400</left><top>130</top><width>490</width><height>365</height><texture border="24">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-bg.png</texture></control>
             <control type="image"><left>1400</left><top>130</top><width>490</width><height>100</height><texture border="40" colordiffuse="6600E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-card-topglow.png</texture></control>
-            <control type="label"><left>1424</left><top>146</top><width>350</width><height>28</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><label>Live Feed</label></control>
+            <control type="label" id="1177"><left>1424</left><top>146</top><width>200</width><height>28</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><label>Live Feed</label><visible>true</visible></control>
+            <control type="label" id="1178"><left>1424</left><top>146</top><width>130</width><height>28</height><font>font13_title</font><textcolor>FFFFFFFF</textcolor><label>Waterfall</label><visible>true</visible></control>
+            <!-- Confirmed real clarification needed: this radio has no
+                 spectrum-analyzer hardware, so unlike a true SDR
+                 waterfall (frequency on one axis, amplitude as color)
+                 there's no per-frequency data available to show at all
+                 -- this is RSSI over time instead, the closest honest
+                 equivalent this radio can actually provide. Said
+                 directly in the header rather than only in a code
+                 comment someone testing this would never see. -->
+            <control type="label" id="1932"><left>1560</left><top>150</top><width>175</width><height>22</height><font>font10</font><textcolor>FFAAAAAA</textcolor><label>(RSSI over time)</label><visible>true</visible></control>
+            <!-- Waterfall toggle: swaps this whole panel's content between
+                 the scrolling text feed and a real, Python-rendered
+                 waterfall image built from the same already-flowing
+                 raw_packet stream's RSSI values (see _generate_waterfall_
+                 image) -- no separate/fabricated data source, just a
+                 different view of it. LoRa mesh radios like this one have
+                 no spectrum-analyzer hardware, so unlike an SDR waterfall
+                 this can't show true per-frequency signal data; it's
+                 signal strength over time instead, the same thing every
+                 other MeshCore-based UI's "waterfall" actually shows once
+                 you look at what data a companion radio exposes. -->
+            <control type="button" id="1175">
+                <left>1740</left><top>142</top><width>76</width><height>36</height><label></label>
+                <texturenofocus border="14" colordiffuse="2A00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturenofocus>
+                <texturefocus border="14" colordiffuse="FF00E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texturefocus>
+                <onleft>103</onleft><onright>103</onright><onup>103</onup><ondown>103</ondown>
+            </control>
+            <!-- Confirmed real gap from a log: the button was reached and
+                 clicked repeatedly (4 times in a row, with growing gaps
+                 between each) with nothing else happening in between --
+                 the pattern of someone pressing Select again because the
+                 first press didn't visibly seem to do anything, not
+                 because navigation into the button failed. A Kodi
+                 <control type="button"> only has nofocus/focus textures,
+                 no persistent third "currently toggled on" look, so
+                 between clicks -- once focus moves away, or even while
+                 it's sitting there mid-decision -- there was nothing
+                 confirming the toggle actually took effect beyond the
+                 title text swapping between "Live Feed"/"Waterfall",
+                 easy to miss if attention is on the button itself and
+                 not the title 300+ pixels to its own left. This overlay
+                 gives the button itself an unmistakable, persistent
+                 "this is ON" look, independent of focus. -->
+            <control type="image" id="1931">
+                <left>1740</left><top>142</top><width>76</width><height>36</height>
+                <texture border="14" colordiffuse="FF3DDC84">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture>
+                <visible>true</visible>
+            </control>
             <control type="image">
+                <left>1756</left><top>150</top><width>20</width><height>20</height>
+                <texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-waterfall.png</texture>
+                <colordiffuse>FFFFFFFF</colordiffuse>
+            </control>
+            <control type="image" id="1179">
                 <left>1830</left><top>152</top><width>14</width><height>14</height>
                 <texture>special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-dot.png</texture>
                 <colordiffuse>FF3DDC84</colordiffuse>
+                <visible>true</visible>
             </control>
             <control type="image"><left>1424</left><top>182</top><width>442</width><height>1</height><texture colordiffuse="3300E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture></control>
             <control type="list" id="1170">
                 <left>1420</left><top>194</top><width>460</width><height>270</height>
+                <onup>1175</onup>
                 <itemlayout height="27" width="460">
                     <control type="label"><left>4</left><width>456</width><height>27</height><font>font10</font><textcolor>FFAAAAAA</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </itemlayout>
@@ -1847,6 +1954,60 @@
                     <control type="image"><left>0</left><width>460</width><height>25</height><texture border="8" colordiffuse="4000E9FF">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt6-pill-small.png</texture></control>
                     <control type="label"><left>4</left><width>456</width><height>27</height><font>font10</font><textcolor>FFFFFFFF</textcolor><aligny>center</aligny><info>ListItem.Label</info></control>
                 </focusedlayout>
+                <visible>true</visible>
+            </control>
+            <control type="image" id="1176">
+                <left>1420</left><top>194</top><width>460</width><height>270</height>
+                <texture colordiffuse="330D111C">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture>
+                <visible>true</visible>
+            </control>
+            <!-- 30 individually-colored vertical bars, each one
+                 packet's RSSI mapped to a color, form the waterfall
+                 strip -- deliberately built from plain native image
+                 controls with colordiffuse set per-bar from Python
+                 (_generate_waterfall_colors), the exact same proven
+                 mechanism as every gauge and bar elsewhere in this
+                 app, rather than a single Python-rendered PNG. A
+                 real image would need Pillow available at runtime on
+                 whatever Kodi install this ends up on, which isn't a
+                 bundled or guaranteed dependency -- this needs
+                 nothing beyond what every other visual in this addon
+                 already relies on. -->
+            <control type="image" id="1900"><left>1420</left><top>194</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1901"><left>1420</left><top>203</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1902"><left>1420</left><top>212</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1903"><left>1420</left><top>221</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1904"><left>1420</left><top>230</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1905"><left>1420</left><top>239</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1906"><left>1420</left><top>248</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1907"><left>1420</left><top>257</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1908"><left>1420</left><top>266</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1909"><left>1420</left><top>275</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1910"><left>1420</left><top>284</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1911"><left>1420</left><top>293</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1912"><left>1420</left><top>302</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1913"><left>1420</left><top>311</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1914"><left>1420</left><top>320</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1915"><left>1420</left><top>329</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1916"><left>1420</left><top>338</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1917"><left>1420</left><top>347</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1918"><left>1420</left><top>356</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1919"><left>1420</left><top>365</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1920"><left>1420</left><top>374</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1921"><left>1420</left><top>383</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1922"><left>1420</left><top>392</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1923"><left>1420</left><top>401</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1924"><left>1420</left><top>410</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1925"><left>1420</left><top>419</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1926"><left>1420</left><top>428</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1927"><left>1420</left><top>437</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1928"><left>1420</left><top>446</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="image" id="1929"><left>1420</left><top>455</top><width>460</width><height>8</height><texture colordiffuse="00000000">special://home/addons/plugin.program.remoteterm/resources/skins/Default/1080i/rt5-white.png</texture><visible>true</visible></control>
+            <control type="label" id="1930">
+                <left>1420</left><top>194</top><width>460</width><height>270</height>
+                <font>font11</font><textcolor>FF888888</textcolor><align>center</align><aligny>center</aligny>
+                <label>Waiting for packets to build the waterfall...</label>
+                <visible>true</visible>
             </control>
 
             <!-- Packet Reception Intensity: thermometer-style bar that reddens
